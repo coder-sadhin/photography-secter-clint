@@ -17,7 +17,7 @@ const SetReview = ({ _id, title, reviewTotal, setReviewTotal }) => {
             email,
             massage
         }
-        console.log(order)
+        // console.log(order)
 
         fetch('http://localhost:5000/addReview', {
             method: 'POST',
@@ -31,7 +31,7 @@ const SetReview = ({ _id, title, reviewTotal, setReviewTotal }) => {
                 // console.log(data);
                 const newLength = reviewTotal + 1;
                 if (data.acknowledged) {
-                    alert('Order Place Successfully');
+                    alert('Review Add Successfully');
                     from.reset();
                     setReviewTotal(newLength);
                 }
