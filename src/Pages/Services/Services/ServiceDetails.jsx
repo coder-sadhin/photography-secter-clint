@@ -1,7 +1,8 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { FaCamera, FaMoneyBill, FaStopwatch } from 'react-icons/fa';
-import ServiceReview from '../../Review/ServicsReview/ServicsReview';
+import SetReview from '../../Review/ServicsReview/SetReview';
+import ServicesReview from '../../Review/ServicsReview/ServicsReview';
 
 const ServiceDetails = ({ user }) => {
     const service = useLoaderData();
@@ -65,11 +66,18 @@ const ServiceDetails = ({ user }) => {
                     </div>
                 </div>
             </div>
-
-            {/* this is review section  */}
-            <ServiceReview title={title} _id={_id}></ServiceReview>
+            {/* this is review view section */}
 
 
+            <div>
+                <ServicesReview></ServicesReview>
+            </div>
+
+
+            {/* this is review add section  */}
+            <div>
+                <SetReview title={title} _id={_id}></SetReview>
+            </div>
         </div>
     );
 };
