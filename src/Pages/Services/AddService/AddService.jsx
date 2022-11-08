@@ -44,10 +44,11 @@ const AddService = () => {
             .catch(err => console.error(err))
 
     }
+
     return (
         <div>
-            <div className="hero w-full my-10">
-                <div className='w-1/2'>
+            <div className="hero py-10">
+                <div className='w-11/12 md:w-8/12 mx-auto'>
                     <div className="card flex-shrink-0 w-full shadow-2xl shadow-slate-500 ">
                         <h1 className="text-5xl font-bold mt-5 text-center text-blue-700">Add A Service!</h1>
                         <form onSubmit={handleToAddService} className="card-body">

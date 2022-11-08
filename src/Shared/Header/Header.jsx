@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../asset/logo2.png';
+import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 
-const Header = ({ user }) => {
+const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+
     const menuItems = <>
         <li className='font-semibold'><Link to={'/'}>Home</Link></li>
         <li className='font-semibold'><Link to={'/services'}>Services</Link></li>
-        <li className='font-semibold'><Link to={'/addService'}>Add Service</Link></li>
+        {
+            user?.email &&
+            <>
+                <li className='font-semibold'><Link to={'/addService'}>Add Service</Link></li>
+                <li className='font-semibold'><Link to={'/myReview'}>My Review</Link></li>
+            </>
+        }
         <li className='font-semibold'><Link to={'/blogs'}>Blogs</Link></li>
-        <li className='font-semibold'><Link to={'/myReview'}>My Review</Link></li>
         {
             user?.email ?
                 <>
-                    <li className='font-semibold'><Link to={'/Orders'}>Orders</Link></li>
-                    <li className='font-semibold'><button className='btn-ghost'>Sign Out</button></li>
+                    <li className='font-semibold'><button onClick={logOut} className='btn-ghost'>Sign Out</button></li>
                 </>
                 :
                 <>
