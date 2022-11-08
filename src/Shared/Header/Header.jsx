@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../asset/logo2.png';
 
 const Header = ({ user }) => {
     const menuItems = <>
         <li className='font-semibold'><Link to={'/'}>Home</Link></li>
         <li className='font-semibold'><Link to={'/services'}>Services</Link></li>
+        <li className='font-semibold'><Link to={'/addService'}>Add Service</Link></li>
+        <li className='font-semibold'><Link to={'/blogs'}>Blogs</Link></li>
+        <li className='font-semibold'><Link to={'/myReview'}>My Review</Link></li>
         {
             user?.email ?
                 <>
@@ -21,7 +25,7 @@ const Header = ({ user }) => {
     return (
         <div className='bg-blue-200'>
             <div className='max-w-screen-xl mx-auto '>
-                <div className="navbar h-20 mb-12">
+                <div className="navbar h-20 mb-5">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -33,8 +37,8 @@ const Header = ({ user }) => {
 
                             </ul>
                         </div>
-                        <Link className="btn btn-ghost normal-case text-xl" to={'/'}>
-                            {/* <img className='w-20' src={logo} alt="" /> */}
+                        <Link className="btn btn-ghost text-xl" to={'/'}>
+                            <img className='w-16' src={logo} alt="" />
                         </Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
