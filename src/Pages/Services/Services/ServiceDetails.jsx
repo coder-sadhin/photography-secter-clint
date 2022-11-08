@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { FaCamera, FaMoneyBill, FaStopwatch } from 'react-icons/fa';
 import SetReview from '../../Review/ServicsReview/SetReview';
@@ -9,12 +9,24 @@ const ServiceDetails = ({ user }) => {
     // console.log(service)
     const { camera_man, details, image_url, job_duration, price, title, total_hire, rating, _id } = service;
 
+    const [reviews, setReviews] = useState([]);
+    const [reviewTotal, setReviewTotal] = useState(0);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/review/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                setReviews(data);
+                setReviewTotal(data.length)
+
+            })
+    }, [_id, reviewTotal])
 
 
     return (
         <div>
             {/* this is details section */}
-            <div className="card w-11/12 md:w-8/12 lg:w-6/12 mx-auto mb-10 bg-blue-200 shadow-xl">
+            <div className="card w-11/12 md:w-8/12 lg:w-8/12 mx-auto mb-10 bg-blue-200 shadow-xl">
                 <div className='w-11/12 mx-auto'>
                     <div className='my-5'>
                         <h2 className="text-3xl font-bold">
@@ -70,13 +82,20 @@ const ServiceDetails = ({ user }) => {
 
 
             <div>
-                <ServicesReview></ServicesReview>
+                <ServicesReview
+                    reviews={reviews}
+                ></ServicesReview>
             </div>
 
 
             {/* this is review add section  */}
             <div>
-                <SetReview title={title} _id={_id}></SetReview>
+                <SetReview
+                    title={title}
+                    _id={_id}
+                    reviewTotal={reviewTotal}
+                    setReviewTotal={setReviewTotal}
+                ></SetReview>
             </div>
         </div>
     );

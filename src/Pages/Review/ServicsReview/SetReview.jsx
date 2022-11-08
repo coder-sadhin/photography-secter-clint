@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SetReview = ({ _id, title }) => {
+const SetReview = ({ _id, title, reviewTotal, setReviewTotal }) => {
 
     const handleReview = (event) => {
         event.preventDefault();
@@ -28,10 +28,12 @@ const SetReview = ({ _id, title }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
+                const newLength = reviewTotal + 1;
                 if (data.acknowledged) {
                     alert('Order Place Successfully');
                     from.reset();
+                    setReviewTotal(newLength);
                 }
             })
             .catch(err => console.error(err))
@@ -40,7 +42,7 @@ const SetReview = ({ _id, title }) => {
 
 
     return (
-        <div className='max-w-screen-xl mx-auto'>
+        <div className='w-11/12 lg:w-8/12 md:w-8/12 mx-auto bg-blue-100'>
             <div className='mt-24 mb-16'>
                 <div className='shadow-lg rounded-xl p-5 border border-blue-900'>
                     <h4 className='text-3xl text-indigo-400 font-bold text-center mb-5'>Add Review</h4>

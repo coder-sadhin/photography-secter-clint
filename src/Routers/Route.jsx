@@ -5,7 +5,7 @@ import Blogs from '../Pages/Blogs/Blogs/Blogs';
 import Home from '../Pages/Home/Home/Home';
 import Login from '../Pages/Login/Login/Login';
 import Register from '../Pages/Login/Register/Register';
-import Myview from '../Pages/Review/Myreview/Myview';
+import Myreview from '../Pages/Review/Myreview/Myreview';
 import AddService from '../Pages/Services/AddService/AddService';
 import ServiceDetails from '../Pages/Services/Services/ServiceDetails';
 import Services from '../Pages/Services/Services/Services';
@@ -48,7 +48,7 @@ const Route = createBrowserRouter([
             },
             {
                 path: '/myReview',
-                element: <Myview></Myview>
+                element: <Myreview></Myreview>
             }
         ]
     }
