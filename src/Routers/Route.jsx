@@ -5,6 +5,7 @@ import Blogs from '../Pages/Blogs/Blogs/Blogs';
 import Home from '../Pages/Home/Home/Home';
 import Login from '../Pages/Login/Login/Login';
 import Register from '../Pages/Login/Register/Register';
+import ResetPass from '../Pages/Login/ResetPass/ResetPass';
 import Myreview from '../Pages/Review/Myreview/Myreview';
 import AddService from '../Pages/Services/AddService/AddService';
 import ServiceDetails from '../Pages/Services/Services/ServiceDetails';
@@ -50,6 +51,10 @@ const Route = createBrowserRouter([
             {
                 path: '/myReview',
                 element: <PrivateRoute><Myreview></Myreview></PrivateRoute>
+            },
+            {
+                path: '/resetPass',
+                element: <ResetPass></ResetPass>
             }
         ]
     }
