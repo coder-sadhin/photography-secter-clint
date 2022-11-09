@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 import SingleBlog from '../blog/SingleBlog';
 
 const Blogs = () => {
     const blogs = useLoaderData();
+    const { setTitle } = useContext(AuthContext)
+    setTitle('Blogs')
     return (
         <div className='max-w-screen-xl mx-auto'>
             <div className='text-4xl text-center mb-5 font-bold'>

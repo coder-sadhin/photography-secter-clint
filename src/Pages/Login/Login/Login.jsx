@@ -5,7 +5,8 @@ import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 
 
 const Login = () => {
-    const { loginUser, loginWithGoogle } = useContext(AuthContext);
+    const { loginUser, loginWithGoogle, setTitle } = useContext(AuthContext);
+    setTitle('Login')
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'

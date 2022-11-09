@@ -11,7 +11,7 @@ const Service = ({ service }) => {
                 <div className="card-body">
                     <h2 className="card-title font-bold text-3xl text-green-600">{title}</h2>
                     <h2 className="card-title font-bold">Price: ${price}</h2>
-                    <p>{details}</p>
+                    <p>{details.slice(0, 100)}....</p>
                     <div className="card-actions my-5">
                         <Link className="btn btn-primary w-full" to={`/service/${_id}`}>
                             Service Details Page

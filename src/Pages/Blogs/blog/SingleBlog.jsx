@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SingleBlog = ({ blog, index }) => {
-    console.log(index + 1);
+    // console.log(index + 1);
     return (
         <div className="card lg:w-full w-11/12 mx-auto bg-blue-200 shadow-xl">
             <div className="card-body">

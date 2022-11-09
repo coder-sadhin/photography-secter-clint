@@ -21,7 +21,6 @@ const ServiceDetails = () => {
             .then(data => {
                 setReviews(data);
                 setReviewTotal(data.length)
-
             })
     }, [_id, reviewTotal])
 

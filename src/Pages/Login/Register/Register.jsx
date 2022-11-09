@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 
 const Register = () => {
 
-    const { createUserWithEmail } = useContext(AuthContext);
+    const { createUserWithEmail, updateUserProfile, setTitle } = useContext(AuthContext);
+    setTitle('Register')
     const navigate = useNavigate();
-
-
     const handleToSignUp = event => {
         event.preventDefault();
         const from = event.target;
@@ -16,14 +16,18 @@ const Register = () => {
         const password = from.password.value;
         const PhotoURL = from.PhotoURL.value;
 
+        const profile = { displayName: name, photoURL: PhotoURL };
+        from.reset();
+
         createUserWithEmail(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
                 if (user) {
+                    updateUserProfile(profile)
+                    toast.success('User successfully created');
                     navigate('/')
                 }
-
             })
             .catch(err => console.error(err))
 
@@ -38,25 +42,25 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" name='name' placeholder="Enter Your Name" className="input input-bordered" />
+                            <input type="text" name='name' required placeholder="Enter Your Name" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">PhotoURL</span>
                             </label>
-                            <input type="text" name='PhotoURL' placeholder="Enter PhotoURL" className="input input-bordered" />
+                            <input type="text" name='PhotoURL' required placeholder="Enter PhotoURL" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" name='email' placeholder="email" className="input input-bordered" />
+                            <input type="email" name='email' required placeholder="email" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" name='password' placeholder="password" className="input input-bordered" />
+                            <input type="password" name='password' required placeholder="password" className="input input-bordered" />
                         </div>
                         <div className="form-control mt-6">
                             <input className='btn btn-primary' type="submit" value="Register" />

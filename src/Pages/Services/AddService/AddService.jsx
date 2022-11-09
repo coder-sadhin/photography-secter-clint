@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 
 const AddService = () => {
+    const navigate = useNavigate()
+    const { setTitle } = useContext(AuthContext);
+
+    setTitle('AddServices')
+
     const handleToAddService = event => {
         event.preventDefault();
         const from = event.target;
@@ -13,7 +20,7 @@ const AddService = () => {
         const total_hire = from.total_hire.value;
         const image_url = from.image_url.value;
         const rating = { number: 4.5, badge: "Excellent" }
-
+        // all data collect for service 
         const service = {
             title,
             rating,
@@ -24,7 +31,7 @@ const AddService = () => {
             image_url,
             job_duration
         }
-        console.log(service)
+        // console.log(service)
 
         fetch('http://localhost:5000/addService', {
             method: 'POST',
@@ -39,10 +46,10 @@ const AddService = () => {
                 if (data.acknowledged) {
                     alert('Service Add Successfully');
                     from.reset();
+                    navigate('/services')
                 }
             })
             .catch(err => console.error(err))
-
     }
 
     return (
@@ -100,14 +107,11 @@ const AddService = () => {
                                 </label>
                                 <input type="number" required name='total_hire' placeholder="Service Hire" className="input input-bordered" />
                             </div>
-
-
                             <div className="form-control mt-3">
                                 <input className='btn btn-primary' type="submit" value="Add Service" />
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>

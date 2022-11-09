@@ -4,10 +4,10 @@ import Review from './Review';
 
 const Myreview = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, setTitle } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
 
-
+    setTitle('Review')
     useEffect(() => {
         fetch(`http://localhost:5000/myReview?email=${user?.email}`, {
         })
