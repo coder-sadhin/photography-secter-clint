@@ -2,6 +2,7 @@ import React from 'react';
 import Review from './Review';
 
 const ServicesReview = ({ reviews }) => {
+    // console.log(reviews);
     return (
         <div className='lg:w-8/12 md:w-8/12  w-11/12  mx-auto'>
             <div className='text-4xl text-center mb-5 font-bold'>

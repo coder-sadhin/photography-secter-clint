@@ -6,16 +6,16 @@ import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 
 const Login = () => {
     const { loginUser, loginWithGoogle } = useContext(AuthContext);
-    const location = useLocation();
     const navigate = useNavigate();
-
+    const location = useLocation();
     const from = location.state?.from?.pathname || '/'
+    // console.log(from)
 
     const handleToLogin = event => {
         event.preventDefault();
-        const from = event.target;
-        const email = from.email.value;
-        const password = from.password.value;
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
 
         console.log(email, password)
 
@@ -23,6 +23,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                form.reset();
+                navigate(from, { replace: true })
             })
             .catch(err => console.error(err))
     }
@@ -31,9 +33,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                if (user) {
-                    navigate(from, { replace: true })
-                }
+                from.reset();
+                navigate(from, { replace: true })
             })
             .catch(err => console.error(err))
     }

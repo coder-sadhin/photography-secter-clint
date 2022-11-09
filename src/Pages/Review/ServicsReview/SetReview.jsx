@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 
-const SetReview = ({ _id, title, reviewTotal, setReviewTotal }) => {
+const SetReview = ({ _id, title, reviewTotal, setReviewTotal, image_url }) => {
+    const { user } = useContext(AuthContext);
 
     const handleReview = (event) => {
         event.preventDefault();
         const from = event.target;
-
         const name = `${from.firstName.value} ${from.lastName.value}`;
-        const email = 'unRegistered';
+        const email = user?.email ? user.email : 'unRegistered';
         const massage = from.massage.value;
+        const photoURL = user?.photoURL;
 
-        const order = {
+        const reviewObject = {
             service_id: _id,
             serviceName: title,
             name: name,
             email,
-            massage
+            massage,
+            photoURL,
+            image_url: image_url
         }
         // console.log(order)
 
@@ -24,7 +28,7 @@ const SetReview = ({ _id, title, reviewTotal, setReviewTotal }) => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(order)
+            body: JSON.stringify(reviewObject)
         })
             .then(res => res.json())
             .then(data => {

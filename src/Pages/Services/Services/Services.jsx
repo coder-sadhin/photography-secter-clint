@@ -6,7 +6,7 @@ const Services = () => {
 
 
     return (
-        <div className='max-w-screen-xl mx-auto'>
+        <div className='w-11/12 mx-auto'>
             <div className='text-4xl text-center mb-5 font-bold'>
                 <h2> All Our Services : {services.length}</h2>
             </div>

@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 
 const Register = () => {
 
     const { createUserWithEmail } = useContext(AuthContext);
+    const navigate = useNavigate();
 
 
     const handleToSignUp = event => {
@@ -19,7 +20,10 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                <Navigate to={'/'}></Navigate>
+                if (user) {
+                    navigate('/')
+                }
+
             })
             .catch(err => console.error(err))
 

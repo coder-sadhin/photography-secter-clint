@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLoaderData, useLocation, Link } from 'react-router-dom';
 import { FaCamera, FaMoneyBill, FaStopwatch } from 'react-icons/fa';
 import SetReview from '../../Review/ServicsReview/SetReview';
 import ServicesReview from '../../Review/ServicsReview/ServicsReview';
+import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 
-const ServiceDetails = ({ user }) => {
+const ServiceDetails = () => {
+    const { user } = useContext(AuthContext);
     const service = useLoaderData();
+    const location = useLocation();
     // console.log(service)
     const { camera_man, details, image_url, job_duration, price, title, total_hire, rating, _id } = service;
 
@@ -21,7 +24,6 @@ const ServiceDetails = ({ user }) => {
 
             })
     }, [_id, reviewTotal])
-
 
     return (
         <div>
@@ -81,7 +83,7 @@ const ServiceDetails = ({ user }) => {
             {/* this is review view section */}
 
 
-            <div>
+            <div className="pb-10">
                 <ServicesReview
                     reviews={reviews}
                 ></ServicesReview>
@@ -89,14 +91,26 @@ const ServiceDetails = ({ user }) => {
 
 
             {/* this is review add section  */}
-            <div>
-                <SetReview
-                    title={title}
-                    _id={_id}
-                    reviewTotal={reviewTotal}
-                    setReviewTotal={setReviewTotal}
-                ></SetReview>
-            </div>
+
+
+            {
+                user?.email ?
+                    <div>
+                        <SetReview
+                            title={title}
+                            _id={_id}
+                            reviewTotal={reviewTotal}
+                            setReviewTotal={setReviewTotal}
+                            image_url={image_url}
+                        ></SetReview>
+                    </div>
+                    :
+                    <div className="flex justify-center pb-5">
+                        <Link to={'/login'} state={{ from: location }} replace className="btn btn-primary">
+                            <button>Login For Post A review</button>
+                        </Link>
+                    </div>
+            }
         </div>
     );
 };
