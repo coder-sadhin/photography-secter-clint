@@ -17,7 +17,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email, password)
+        // console.log(email, password)
 
         loginUser(email, password)
             .then(result => {
@@ -69,7 +69,6 @@ const Login = () => {
                             <button onClick={handleLoginWithGoogle} className='btn btn-success'><FaGoogle className='mr-3' /> Login With Google</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

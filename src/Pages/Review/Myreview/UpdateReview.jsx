@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useNavigate, useLoaderData, } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const UpdateReview = () => {
     const review = useLoaderData();
     const { serviceName, massage, _id } = review;
     const [massageText, setMassageText] = useState(massage);
-
+    const navigate = useNavigate();
     const commentChange = event => {
         const text = event.target.value;
         setMassageText(text)
     }
-    console.log(massageText)
+    // console.log(massageText)
 
 
     const handleToUpdate = (id, massage) => {
@@ -23,11 +24,14 @@ const UpdateReview = () => {
             body: JSON.stringify({ massage: massage })
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                // console.log(data)
+                if (data.modifiedCount > 0) {
+                    toast.success('Review Update Successfully!')
+                    navigate('/myReview')
+                }
+            })
     }
-
-
-
 
     return (
         <div className='py-20'>

@@ -35,8 +35,6 @@ const Header = () => {
                             </label>
                             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                                 {menuItems}
-
-
                             </ul>
                         </div>
                         <Link className="btn btn-ghost text-xl" to={'/'}>
@@ -51,10 +49,19 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <button className="btn btn-outline btn-warning">Appointment</button>
+                        <label htmlFor="about" className="btn btn-outline btn-warning">HIRE ME</label>
                     </div>
                 </div>
             </div>
+
+            {/* this is modal area */}
+            <input type="checkbox" id="about" className="modal-toggle" />
+            <label htmlFor="about" className="modal cursor-pointer">
+                <label className="modal-box relative" htmlFor="">
+                    <h3 className="text-3xl font-bold">Thank You! For visiting My site</h3>
+                    <p className="py-4 text-2xl text-indigo-600">This Section is Under Construction. Please Don`t Mind.</p>
+                </label>
+            </label>
         </div>
 
     );
