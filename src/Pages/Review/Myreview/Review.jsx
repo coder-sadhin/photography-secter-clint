@@ -1,10 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Review = ({ review }) => {
     const { serviceName, image_url, massage, _id } = review;
-
-
-
 
     return (
         <div className='flex justify-between border border-blue-700 rounded-xl bg-blue-200'>
@@ -18,8 +16,10 @@ const Review = ({ review }) => {
                 <p className='text-xl text-pink-500'>{massage}</p>
             </div>
             <div className='flex items-center'>
-                <label htmlFor="my-modal" className='btn btn-primary mr-5'>Update</label>
+                <Link className='btn btn-primary mr-5' to={`/updateReview/${_id}`}>Update</Link>
             </div>
+
+
         </div>
     );
 };

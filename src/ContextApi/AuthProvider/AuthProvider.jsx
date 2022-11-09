@@ -28,16 +28,18 @@ const AuthProvider = ({ children }) => {
     }
 
     const passwordReset = (email) => {
+        setLoading(true)
         return sendPasswordResetEmail(auth, email)
     }
 
     const logOut = () => {
+        setLoading(true)
         return signOut(auth);
     }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log(currentUser);
+            // console.log(currentUser);
             setUser(currentUser);
             setLoading(false)
         });

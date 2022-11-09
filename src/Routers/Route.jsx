@@ -7,6 +7,7 @@ import Login from '../Pages/Login/Login/Login';
 import Register from '../Pages/Login/Register/Register';
 import ResetPass from '../Pages/Login/ResetPass/ResetPass';
 import Myreview from '../Pages/Review/Myreview/Myreview';
+import UpdateReview from '../Pages/Review/Myreview/UpdateReview';
 import AddService from '../Pages/Services/AddService/AddService';
 import ServiceDetails from '../Pages/Services/Services/ServiceDetails';
 import Services from '../Pages/Services/Services/Services';
@@ -55,6 +56,11 @@ const Route = createBrowserRouter([
             {
                 path: '/resetPass',
                 element: <ResetPass></ResetPass>
+            },
+            {
+                path: '/updateReview/:id',
+                element: <PrivateRoute><UpdateReview></UpdateReview></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
             }
         ]
     }
