@@ -16,7 +16,7 @@ const UpdateReview = () => {
 
     const handleToUpdate = (id, massage) => {
         // console.log(id, massage)
-        fetch(`http://localhost:5000/update/${id}`, {
+        fetch(`https://photographer-server-theta.vercel.app/update/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

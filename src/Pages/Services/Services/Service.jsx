@@ -8,7 +8,7 @@ const Service = ({ service }) => {
     console.log(service)
     return (
         <div className='mx-auto'>
-            <div className="card card-compact w-96 bg-base-100 shadow-xl">
+            <div className="card card-compact lg:w-96 md:w-96 w-80 bg-base-100 shadow-xl">
                 <PhotoView src={image_url}>
                     <figure> <img src={image_url} className='w-full' alt="Shoes" /></figure>
                 </PhotoView>

@@ -9,7 +9,7 @@ const Header = () => {
     const handleToLogOut = () => {
         logOut()
             .then(() => {
-                localStorage.removeItem('photographyToken');
+                localStorage.removeItem('Photography_Token');
             })
             .then(err => console.error(err));
     }

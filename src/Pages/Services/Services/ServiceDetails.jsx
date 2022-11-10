@@ -15,8 +15,10 @@ const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]);
     const [reviewTotal, setReviewTotal] = useState(0);
 
+    let sortedReview = reviews.sort((a, b) => a.valueOf() - b.valueOf())
+
     useEffect(() => {
-        fetch(`http://localhost:5000/service/review/${_id}`)
+        fetch(`https://photographer-server-theta.vercel.app/service/review/${_id}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
@@ -84,7 +86,7 @@ const ServiceDetails = () => {
 
             <div className="pb-10">
                 <ServicesReview
-                    reviews={reviews}
+                    reviews={sortedReview}
                 ></ServicesReview>
             </div>
 

@@ -16,7 +16,7 @@ const Services = () => {
                 services ?
                     <div className='w-11/12 mx-auto'>
                         <div className='text-4xl text-center mb-5 font-bold'>
-                            <h2> All Our Services : {services.length}</h2>
+                            <h2> All Provide Services : {services.length}</h2>
                         </div>
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8'>
                             {

@@ -33,7 +33,7 @@ const Login = () => {
                 }
                 form.reset();
 
-                fetch('http://localhost:5000/user/jwt', {
+                fetch('https://photographer-server-theta.vercel.app/user/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -43,7 +43,7 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         // console.log(data);
-                        localStorage.setItem('photographyToken', data.token)
+                        localStorage.setItem('Photography_Token', data.token)
                         toast.success('Successfully Login!')
                         navigate(from, { replace: true })
                     })
@@ -53,14 +53,15 @@ const Login = () => {
     }
     const handleLoginWithGoogle = () => {
         loginWithGoogle()
-            .then(result => {
+            .then((result) => {
                 const user = result.user;
-                // console.log(user);
+                console.log(user);
                 const currentUser = {
                     email: user.email
                 }
+                console.log(currentUser)
 
-                fetch('http://localhost:5000/user/jwt', {
+                fetch('https://photographer-server-theta.vercel.app/user/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -69,8 +70,8 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        // console.log(data);
-                        localStorage.setItem('photographyToken', data.token)
+                        console.log(data);
+                        localStorage.setItem('Photography_Token', data.token)
                         toast.success('Successfully Login!')
                         navigate(from, { replace: true })
                     })

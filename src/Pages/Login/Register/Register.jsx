@@ -29,7 +29,7 @@ const Register = () => {
                 if (user) {
                     updateUserProfile(profile)
                 }
-                fetch(`http://localhost:5000/user/jwt?email=${user.email}`, {
+                fetch(`https://photographer-server-theta.vercel.app/user/jwt?email=${user.email}`, {
                     method: 'POST',
                 })
                     .then(res => res.json())

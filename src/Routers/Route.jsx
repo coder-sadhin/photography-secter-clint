@@ -35,17 +35,17 @@ const Route = createBrowserRouter([
             {
                 path: '/services',
                 element: <Services></Services>,
-                loader: () => fetch('http://localhost:5000/services')
+                loader: () => fetch('https://photographer-server-theta.vercel.app/services')
             },
             {
                 path: '/service/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
+                loader: ({ params }) => fetch(`https://photographer-server-theta.vercel.app/service/${params.id}`)
             },
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>,
-                loader: () => fetch('http://localhost:5000/blogs')
+                loader: () => fetch('https://photographer-server-theta.vercel.app/blogs')
             },
             {
                 path: '/addService',
@@ -62,7 +62,7 @@ const Route = createBrowserRouter([
             {
                 path: '/updateReview/:id',
                 element: <PrivateRoute><UpdateReview></UpdateReview></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
+                loader: ({ params }) => fetch(`https://photographer-server-theta.vercel.app/review/${params.id}`)
             }
         ]
     }

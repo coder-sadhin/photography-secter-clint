@@ -33,7 +33,7 @@ const AddService = () => {
         }
         // console.log(service)
 
-        fetch('http://localhost:5000/addService', {
+        fetch('https://photographer-server-theta.vercel.app/addService', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

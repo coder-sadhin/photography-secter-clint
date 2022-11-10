@@ -7,7 +7,7 @@ const WorkSample = () => {
     const [workSample, setWorkSample] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/product')
+        fetch('https://photographer-server-theta.vercel.app/product')
             .then(res => res.json())
             .then(data => setWorkSample(data))
     }, [])

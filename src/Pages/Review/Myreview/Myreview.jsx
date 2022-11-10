@@ -7,33 +7,41 @@ const Myreview = () => {
 
     const { user, logOut } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
+    const [empty, setEmpty] = useState(false);
+
     useEffect(() => {
         // This will run when the page first loads and whenever the title changes
         document.title = 'MyReview'
     }, []);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myReview?email=${user?.email}`, {
+        fetch(`https://photographer-server-theta.vercel.app/myReview?email=${user?.email}`, {
             headers: {
-                authorization: `Bearer ${localStorage.getItem('genius token')}`
+                authorization: `Bearer ${localStorage.getItem('Photography_Token')}`
             }
         })
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
                     toast.error("Try UnAuthorized Access? Please Login")
-                    localStorage.removeItem('photographyToken');
+                    localStorage.removeItem('Photography_Token');
                     logOut()
                 }
                 return res.json()
             })
-            .then(data => setReviews(data))
+            .then(data => {
+                setReviews(data);
+                if (data.length < 1) {
+                    setEmpty(true)
+                }
+            })
     }, [user?.email])
+
 
     const handleToDeleteComment = (id) => {
         const proceed = window.confirm('Are you sure to cancel your order?')
 
         if (proceed) {
-            fetch(`http://localhost:5000/review/${id}`, {
+            fetch(`https://photographer-server-theta.vercel.app/review/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -54,6 +62,17 @@ const Myreview = () => {
             <div className='text-4xl text-center mb-5 font-bold'>
                 <h2> All Review : {reviews.length}</h2>
             </div>
+            <div>
+                {
+                    empty &&
+                    <div className='flex justify-center py-20'>
+                        <div className='py-10 px-20 bg-blue-200 rounded-xl'>
+                            <h2 className='text-4xl font-bold'>No Review</h2>
+                        </div>
+                    </div>
+                }
+            </div>
+
             <div className='grid grid-cols-1 gap-5 pb-10'>
                 {
                     reviews.map(review => <Review
@@ -62,6 +81,7 @@ const Myreview = () => {
                         handleToDeleteComment={handleToDeleteComment}
                     ></Review>)
                 }
+
             </div>
         </div>
     );

@@ -11,6 +11,7 @@ const SetReview = ({ _id, title, reviewTotal, setReviewTotal, image_url }) => {
         const email = user?.email ? user.email : 'unRegistered';
         const massage = from.massage.value;
         const photoURL = user?.photoURL;
+        const date = new Date()
 
         const reviewObject = {
             service_id: _id,
@@ -19,11 +20,12 @@ const SetReview = ({ _id, title, reviewTotal, setReviewTotal, image_url }) => {
             email,
             massage,
             photoURL,
-            image_url: image_url
+            image_url: image_url,
+            date
         }
         // console.log(order)
 
-        fetch('http://localhost:5000/addReview', {
+        fetch('https://photographer-server-theta.vercel.app/addReview', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
