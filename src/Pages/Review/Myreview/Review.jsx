@@ -5,9 +5,9 @@ const Review = ({ review, handleToDeleteComment }) => {
     const { serviceName, image_url, massage, _id } = review;
 
     return (
-        <div className='w-full flex md:flex-row flex-col justify-between border border-blue-700 rounded-xl bg-blue-200'>
+        <div className='w-11/12 mx-auto flex md:flex-row flex-col justify-between border border-blue-700 rounded-xl bg-blue-200'>
             <div className="avatar">
-                <div className="sm:w-24 md:w-24 lg:w-24 w-60 mx-auto py-5 sm:py-0 md:py-0 lg:py-0 rounded-xl">
+                <div className="sm:w-24 md:w-24 lg:w-24 w-52 mx-auto py-5 sm:py-0 md:py-0 lg:py-0 rounded-xl">
                     <img className='rounded-lg' src={image_url} alt="" />
                 </div>
             </div>
