@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Banner = () => {
     return (
         <div className='w-10/12 mx-auto'>
-            <div className="hero min-h-screen mb-10 rounded-xl" style={{ backgroundImage: `url("https://iili.io/pG7xrQ.jpg")` }}>
+            <div className="hero md:h-80 mb-10 rounded-xl" style={{ backgroundImage: `url("https://iili.io/pG7xrQ.jpg")` }}>
                 <div className="hero-overlay rounded-xl bg-opacity-50"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div>
