@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 import SingleBlog from '../blog/SingleBlog';
 
 const Blogs = () => {
     const blogs = useLoaderData();
-    const { setTitle } = useContext(AuthContext)
-    setTitle('Blogs')
+    useEffect(() => {
+        // This will run when the page first loads and whenever the title changes
+        document.title = 'Blogs'
+    }, []);
     return (
         <div className='max-w-screen-xl mx-auto'>
             <div className='text-4xl text-center mb-5 font-bold'>

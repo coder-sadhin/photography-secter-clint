@@ -1,16 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 
 
 const Login = () => {
-    const { loginUser, loginWithGoogle, setTitle } = useContext(AuthContext);
-    setTitle('Login')
+    const { loginUser, loginWithGoogle } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
     // console.log(from)
+    useEffect(() => {
+        // This will run when the page first loads and whenever the title changes
+        document.title = 'Login'
+    }, []);
 
     const handleToLogin = event => {
         event.preventDefault();

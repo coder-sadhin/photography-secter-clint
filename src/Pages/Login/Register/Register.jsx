@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 
 const Register = () => {
 
-    const { createUserWithEmail, updateUserProfile, setTitle } = useContext(AuthContext);
-    setTitle('Register')
+    const { createUserWithEmail, updateUserProfile } = useContext(AuthContext);
+    useEffect(() => {
+        // This will run when the page first loads and whenever the title changes
+        document.title = 'Register'
+    }, []);
     const navigate = useNavigate();
     const handleToSignUp = event => {
         event.preventDefault();

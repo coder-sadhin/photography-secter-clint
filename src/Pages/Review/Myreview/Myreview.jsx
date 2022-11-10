@@ -4,10 +4,13 @@ import Review from './Review';
 
 const Myreview = () => {
 
-    const { user, setTitle } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+        // This will run when the page first loads and whenever the title changes
+        document.title = 'MyReview'
+    }, []);
 
-    setTitle('Review')
     useEffect(() => {
         fetch(`http://localhost:5000/myReview?email=${user?.email}`, {
         })

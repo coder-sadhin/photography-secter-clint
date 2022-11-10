@@ -1,14 +1,14 @@
-import { useContext } from 'react';
+import { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 import SpinnerPage from '../../../SpinnerPage/SpinnerPage';
 import Service from './Service';
 
 const Services = () => {
     const services = useLoaderData();
-    const { setTitle } = useContext(AuthContext);
-
-    setTitle('Services')
+    useEffect(() => {
+        // This will run when the page first loads and whenever the title changes
+        document.title = 'Services'
+    }, []);
 
     return (
         <div>

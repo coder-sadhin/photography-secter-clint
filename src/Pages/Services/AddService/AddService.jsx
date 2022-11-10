@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 
 const AddService = () => {
     const navigate = useNavigate()
-    const { setTitle } = useContext(AuthContext);
-
-    setTitle('AddServices')
+    useEffect(() => {
+        // This will run when the page first loads and whenever the title changes
+        document.title = 'AddService'
+    }, []);
 
     const handleToAddService = event => {
         event.preventDefault();
