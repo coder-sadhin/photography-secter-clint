@@ -6,6 +6,14 @@ import { AuthContext } from '../../ContextApi/AuthProvider/AuthProvider';
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
 
+    const handleToLogOut = () => {
+        logOut()
+            .then(() => {
+                localStorage.removeItem('photographyToken');
+            })
+            .then(err => console.error(err));
+    }
+
     const menuItems = <>
         <li className='font-semibold'><Link to={'/'}>Home</Link></li>
         <li className='font-semibold'><Link to={'/services'}>Services</Link></li>
@@ -15,7 +23,7 @@ const Header = () => {
         {
             user?.email ?
                 <>
-                    <li className='font-semibold'><button onClick={logOut} className='btn-ghost'>Sign Out</button></li>
+                    <li className='font-semibold'><button onClick={handleToLogOut} className='btn-ghost'>Sign Out</button></li>
                 </>
                 :
                 <>

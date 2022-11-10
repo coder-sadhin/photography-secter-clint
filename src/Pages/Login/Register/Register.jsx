@@ -25,12 +25,20 @@ const Register = () => {
         createUserWithEmail(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 if (user) {
                     updateUserProfile(profile)
-                    toast.success('User successfully created');
-                    navigate('/')
                 }
+                fetch(`http://localhost:5000/user/jwt?email=${user.email}`, {
+                    method: 'POST',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        localStorage.setItem('photographyToken', data.token)
+                        toast.success('User successfully created');
+                        navigate('/')
+                    })
             })
             .catch(err => console.error(err))
 

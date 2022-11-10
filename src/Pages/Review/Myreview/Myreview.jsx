@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
 import Review from './Review';
+import toast from 'react-hot-toast';
 
 const Myreview = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
         // This will run when the page first loads and whenever the title changes
@@ -13,8 +14,18 @@ const Myreview = () => {
 
     useEffect(() => {
         fetch(`http://localhost:5000/myReview?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('genius token')}`
+            }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    toast.error("Try UnAuthorized Access? Please Login")
+                    localStorage.removeItem('photographyToken');
+                    logOut()
+                }
+                return res.json()
+            })
             .then(data => setReviews(data))
     }, [user?.email])
 

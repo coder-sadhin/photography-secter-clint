@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../../ContextApi/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 
 const Login = () => {
@@ -26,9 +27,27 @@ const Login = () => {
         loginUser(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
+                const currentUser = {
+                    email: user.email
+                }
                 form.reset();
-                navigate(from, { replace: true })
+
+                fetch('http://localhost:5000/user/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        localStorage.setItem('photographyToken', data.token)
+                        toast.success('Successfully Login!')
+                        navigate(from, { replace: true })
+                    })
+
             })
             .catch(err => console.error(err))
     }
@@ -36,9 +55,25 @@ const Login = () => {
         loginWithGoogle()
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                from.reset();
-                navigate(from, { replace: true })
+                // console.log(user);
+                const currentUser = {
+                    email: user.email
+                }
+
+                fetch('http://localhost:5000/user/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        localStorage.setItem('photographyToken', data.token)
+                        toast.success('Successfully Login!')
+                        navigate(from, { replace: true })
+                    })
             })
             .catch(err => console.error(err))
     }
