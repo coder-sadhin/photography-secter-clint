@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Review = ({ review }) => {
+const Review = ({ review, handleToDeleteComment }) => {
     const { serviceName, image_url, massage, _id } = review;
 
     return (
@@ -17,6 +17,7 @@ const Review = ({ review }) => {
             </div>
             <div className='flex items-center'>
                 <Link className='btn btn-primary mr-5' to={`/updateReview/${_id}`}>Update</Link>
+                <button onClick={() => handleToDeleteComment(_id)} className='btn btn-outline bg-orange-400 mr-5'>X</button>
             </div>
 
 

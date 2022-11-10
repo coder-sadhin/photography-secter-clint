@@ -29,6 +29,26 @@ const Myreview = () => {
             .then(data => setReviews(data))
     }, [user?.email])
 
+    const handleToDeleteComment = (id) => {
+        const proceed = window.confirm('Are you sure to cancel your order?')
+
+        if (proceed) {
+            fetch(`http://localhost:5000/review/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    if (data.deletedCount > 0) {
+                        toast.success('delete successfully');
+                        const remaining = reviews.filter(review => review._id !== id);
+                        setReviews(remaining)
+                    }
+
+                })
+        }
+    }
+
     return (
         <div className='lg:w-8/12 md:w-8/12  w-11/12  mx-auto'>
             <div className='text-4xl text-center mb-5 font-bold'>
@@ -39,6 +59,7 @@ const Myreview = () => {
                     reviews.map(review => <Review
                         key={review._id}
                         review={review}
+                        handleToDeleteComment={handleToDeleteComment}
                     ></Review>)
                 }
             </div>
