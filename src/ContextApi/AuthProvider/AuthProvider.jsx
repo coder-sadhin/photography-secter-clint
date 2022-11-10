@@ -55,14 +55,6 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
-    // this section for title 
-    const [title, setTitle] = useState("PHOTOGRAPHY WORLD");
-    useEffect(() => {
-        // This will run when the page first loads and whenever the title changes
-        document.title = title;
-    }, [title]);
-
-
     const authInfo = {
         user,
         loading,
@@ -72,8 +64,7 @@ const AuthProvider = ({ children }) => {
         loginUser,
         passwordReset,
         logOut,
-        setLoading,
-        setTitle
+        setLoading
     };
 
 

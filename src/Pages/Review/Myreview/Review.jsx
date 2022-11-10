@@ -5,22 +5,20 @@ const Review = ({ review, handleToDeleteComment }) => {
     const { serviceName, image_url, massage, _id } = review;
 
     return (
-        <div className='flex justify-between border border-blue-700 rounded-xl bg-blue-200'>
+        <div className='w-full flex md:flex-row flex-col justify-between border border-blue-700 rounded-xl bg-blue-200'>
             <div className="avatar">
-                <div className="w-24 rounded-xl">
-                    <img src={image_url} alt="" />
+                <div className="sm:w-24 w-60 mx-auto py-5 rounded-xl">
+                    <img className='rounded-lg' src={image_url} alt="" />
                 </div>
             </div>
             <div className='p-5'>
-                <h2 className='text-2xl font-bold text-purple-500'>Service Name:- {serviceName}</h2>
-                <p className='text-xl text-pink-500'>{massage}</p>
+                <h2 className='text-center sm:text-2xl font-bold text-purple-500'>Service Name:- {serviceName}</h2>
+                <p className='text-xl text-center text-pink-500'>{massage}</p>
             </div>
-            <div className='flex items-center'>
+            <div className='flex justify-center items-center'>
                 <Link className='btn btn-primary mr-5' to={`/updateReview/${_id}`}>Update</Link>
                 <button onClick={() => handleToDeleteComment(_id)} className='btn btn-outline bg-orange-400 mr-5'>X</button>
             </div>
-
-
         </div>
     );
 };
